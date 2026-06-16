@@ -1,8 +1,8 @@
-# Budget Planner
+# Spendr
 
 A self-hosted annual budget planner. Track income and expenses across custom sections with monthly breakdowns, running balances, and cumulative totals.
 
-![Budget Planner screenshot](screenshot.png)
+![Spendr screenshot](screenshot.png)
 
 ## Getting started
 
@@ -14,41 +14,41 @@ Works on Synology, Unraid, TrueNAS, QNAP, Proxmox, or a plain Docker host.
 
 ```bash
 docker run -d \
-  --name budget-planner \
+  --name spendr \
   -p 3000:3000 \
-  -v budget-planner-data:/app/data \
+  -v spendr-data:/app/data \
   --restart unless-stopped \
-  larsmikki/budget-planner:latest
+  larsmikki/spendr:latest
 ```
 
 Or with Compose:
 
 ```yaml
 services:
-  budget-planner:
-    image: larsmikki/budget-planner:latest
-    container_name: budget-planner
+  spendr:
+    image: larsmikki/spendr:latest
+    container_name: spendr
     ports:
       - "3000:3000"
     volumes:
-      - budget-planner-data:/app/data
+      - spendr-data:/app/data
     restart: unless-stopped
 
 volumes:
-  budget-planner-data:
+  spendr-data:
 ```
 
-To build the image locally instead: `docker build -t budget-planner . && docker run -p 3000:3000 -v budget-planner-data:/app/data budget-planner`.
+To build the image locally instead: `docker build -t spendr . && docker run -p 3000:3000 -v spendr-data:/app/data spendr`.
 
-> **Upgrading from Budgety?** This app was previously published as `larsmikki/budgety`. The image, container, and volume names have changed. Your budget lives in the old `budgety-data` volume — either keep `budgety-data` as the volume name in your compose file, or copy its contents into `budget-planner-data` before switching. Your saved theme preference resets once.
+> **Upgrading from Budget Planner?** This app was previously published as `larsmikki/budget-planner`. The image, container, and volume names have changed. Your budget lives in the old `budget-planner-data` volume — either keep `budget-planner-data` as the volume name in your compose file, or copy its contents into `spendr-data` before switching. Your saved theme preference resets once.
 
 ### 2. Local install on Windows
 
 Requires [Git for Windows](https://git-scm.com/download/win) and [Node.js 20+](https://nodejs.org/).
 
 ```powershell
-git clone https://github.com/larsmikki/budget-planner.git
-cd budget-planner
+git clone https://github.com/larsmikki/spendr.git
+cd spendr
 npm install
 npm run dev
 ```
@@ -59,8 +59,8 @@ For a production build: `npm run build && npm start`.
 
 ```bash
 brew install node git
-git clone https://github.com/larsmikki/budget-planner.git
-cd budget-planner
+git clone https://github.com/larsmikki/spendr.git
+cd spendr
 npm install
 npm run dev
 ```
@@ -75,8 +75,8 @@ Debian/Ubuntu:
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs git
 
-git clone https://github.com/larsmikki/budget-planner.git
-cd budget-planner
+git clone https://github.com/larsmikki/spendr.git
+cd spendr
 npm install
 npm run dev
 ```

@@ -1,11 +1,11 @@
 services:
-  budget-planner:
-    image: larsmikki/budget-planner:latest
-    container_name: budget-planner
+  spendr:
+    image: larsmikki/spendr:latest
+    container_name: spendr
     ports:
       - "3000:3000"
     volumes:
-      - budget-planner-data:/app/data
+      - spendr-data:/app/data
     restart: always
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
@@ -14,4 +14,4 @@ services:
       retries: 3
 
 volumes:
-  budget-planner-data:
+  spendr-data:

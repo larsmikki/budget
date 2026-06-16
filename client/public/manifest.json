@@ -1,6 +1,6 @@
 {
-  "name": "Budget Planner",
-  "short_name": "Budget",
+  "name": "Spendr",
+  "short_name": "Spendr",
   "description": "Annual budget planner - self-hosted, private, free",
   "start_url": "/",
   "display": "standalone",
