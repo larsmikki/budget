@@ -1,11 +1,11 @@
 services:
-  spendr:
-    image: larsmikki/spendr:latest
-    container_name: spendr
+  ledger:
+    image: larsmikki/ledger:latest
+    container_name: ledger
     ports:
       - "3000:3000"
     volumes:
-      - spendr-data:/app/data
+      - ledger-data:/app/data
     restart: always
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
@@ -14,4 +14,4 @@ services:
       retries: 3
 
 volumes:
-  spendr-data:
+  ledger-data:

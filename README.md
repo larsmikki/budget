@@ -1,8 +1,8 @@
-# Spendr
+# Ledger
 
 A self-hosted annual budget planner. Track income and expenses across custom sections with monthly breakdowns, running balances, and cumulative totals.
 
-![Spendr screenshot](screenshot.png)
+![Ledger screenshot](screenshot.png)
 
 ## Getting started
 
@@ -14,41 +14,41 @@ Works on Synology, Unraid, TrueNAS, QNAP, Proxmox, or a plain Docker host.
 
 ```bash
 docker run -d \
-  --name spendr \
+  --name ledger \
   -p 3000:3000 \
-  -v spendr-data:/app/data \
+  -v ledger-data:/app/data \
   --restart unless-stopped \
-  larsmikki/spendr:latest
+  larsmikki/ledger:latest
 ```
 
 Or with Compose:
 
 ```yaml
 services:
-  spendr:
-    image: larsmikki/spendr:latest
-    container_name: spendr
+  ledger:
+    image: larsmikki/ledger:latest
+    container_name: ledger
     ports:
       - "3000:3000"
     volumes:
-      - spendr-data:/app/data
+      - ledger-data:/app/data
     restart: unless-stopped
 
 volumes:
-  spendr-data:
+  ledger-data:
 ```
 
-To build the image locally instead: `docker build -t spendr . && docker run -p 3000:3000 -v spendr-data:/app/data spendr`.
+To build the image locally instead: `docker build -t ledger . && docker run -p 3000:3000 -v ledger-data:/app/data ledger`.
 
-> **Upgrading from Budget Planner?** This app was previously published as `larsmikki/budget-planner`. The image, container, and volume names have changed. Your budget lives in the old `budget-planner-data` volume — either keep `budget-planner-data` as the volume name in your compose file, or copy its contents into `spendr-data` before switching. Your saved theme preference resets once.
+> **Upgrading from Budget Planner?** The app is now published as `larsmikki/ledger`. The image, container, and volume names have changed. If you used the Docker named volume, your data lives in `budget-planner-data` (`budget-data` or `spendr-data` on older installations) - either keep that volume name in your compose file, or copy its contents into `ledger-data` before switching. The persisted `budget.json` format is unchanged.
 
 ### 2. Local install on Windows
 
 Requires [Git for Windows](https://git-scm.com/download/win) and [Node.js 20+](https://nodejs.org/).
 
 ```powershell
-git clone https://github.com/larsmikki/spendr.git
-cd spendr
+git clone https://github.com/larsmikki/ledger.git
+cd ledger
 npm install
 npm run dev
 ```
@@ -59,8 +59,8 @@ For a production build: `npm run build && npm start`.
 
 ```bash
 brew install node git
-git clone https://github.com/larsmikki/spendr.git
-cd spendr
+git clone https://github.com/larsmikki/ledger.git
+cd ledger
 npm install
 npm run dev
 ```
@@ -75,8 +75,8 @@ Debian/Ubuntu:
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs git
 
-git clone https://github.com/larsmikki/spendr.git
-cd spendr
+git clone https://github.com/larsmikki/ledger.git
+cd ledger
 npm install
 npm run dev
 ```
@@ -87,23 +87,23 @@ For a production build: `npm run build && npm start`.
 
 ## Features
 
-- **Annual budget grid** — 12-month view with per-post and per-section subtotals
-- **Custom sections** — organize posts into income/expense groups with optional color coding
-- **Flexible frequencies** — monthly, quarterly, biannual, yearly, or custom month selection
-- **Inline editing** — double-click any cell to override amounts directly
-- **Drag and drop** — reorder posts within sections
-- **Quick Setup** — pre-built templates for common budget posts
-- **Themes** — light/dark and color themes
-- **Multi-currency** — USD, EUR, GBP, NOK, SEK, DKK, JPY, CHF, PLN with locale-aware formatting
-- **Import/Export** — JSON backup and restore
-- **Demo mode** — fictive amounts for screenshots without exposing real data
+- **Annual budget grid** - 12-month view with per-post and per-section subtotals
+- **Custom sections** - organize posts into income/expense groups with optional color coding
+- **Flexible frequencies** - monthly, quarterly, biannual, yearly, or custom month selection
+- **Inline editing** - double-click any cell to override amounts directly
+- **Drag and drop** - reorder posts within sections
+- **Quick Setup** - pre-built templates for common budget posts
+- **Themes** - light/dark and color themes
+- **Multi-currency** - USD, EUR, GBP, NOK, SEK, DKK, JPY, CHF, PLN with locale-aware formatting
+- **Import/Export** - JSON backup and restore
+- **Demo mode** - fictive amounts for screenshots without exposing real data
 
 ## Tech stack
 
 Monorepo with npm workspaces:
 
-- **`client/`** — React 19 + Vite 8 + Tailwind CSS 4 + TypeScript SPA
-- **`server/`** — Express + TypeScript REST API (`GET`/`PUT /api/state`), persisting to a flat `data/budget.json` — no database
-- **Dev** — Vite dev server on port 3000 with `/api` proxied to the server on 3001 (`npm run dev` starts both)
-- **Production** — single Express server on port 3000 serving the built client and the API (`npm run build && npm start`, or the Docker image)
-- **Tests** — Vitest for client and server (`npm test`)
+- **`client/`** - React 19 + Vite 8 + Tailwind CSS 4 + TypeScript SPA
+- **`server/`** - Express + TypeScript REST API (`GET`/`PUT /api/state`), persisting to a flat `data/budget.json` - no database
+- **Dev** - Vite dev server on port 3000 with `/api` proxied to the server on 3001 (`npm run dev` starts both)
+- **Production** - single Express server on port 3000 serving the built client and the API (`npm run build && npm start`, or the Docker image)
+- **Tests** - Vitest for client and server (`npm test`)

@@ -7,7 +7,7 @@ export default function Footer() {
     <footer style={{ borderTop: `1px solid ${theme.border}`, background: theme.surface }}>
       <div className="mx-auto px-4 sm:px-8 h-12 flex items-center justify-between" style={{ maxWidth: 1152 }}>
         <span className="text-xs" style={{ color: theme.text2 }}>
-          © {new Date().getFullYear()} Spendr
+          © {new Date().getFullYear()} Ledger
         </span>
         <div className="flex items-center gap-4">
           <Link

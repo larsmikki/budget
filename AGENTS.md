@@ -13,7 +13,7 @@ npm start          # Start production server (port 3000)
 **Docker:**
 ```bash
 docker compose up      # Start with persistent volume (port 3000)
-docker build -t spendr .  # Build image
+docker build -t ledger .  # Build image
 ```
 
 ## Architecture

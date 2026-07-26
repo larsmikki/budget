@@ -24,7 +24,7 @@ export default function DonatePage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-extrabold tracking-tight text-text">Support Spendr</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-text">Support Ledger</h1>
         <p className="text-sm mt-0.5 text-text2">
           I build privacy-first, self-hosted tools - no subscriptions, no ads, no tracking. Your data stays yours.
         </p>
@@ -32,7 +32,7 @@ export default function DonatePage() {
 
       <Surface className="p-6 mb-5">
         <h2 className="text-base font-bold mb-1 text-text">What you get</h2>
-        <p className="text-xs mb-5 text-text2">Everything Spendr is and always will be.</p>
+        <p className="text-xs mb-5 text-text2">Everything Ledger is and always will be.</p>
         <div className="flex flex-wrap gap-2.5">
           {badges.map(badge => (
             <span
@@ -48,7 +48,7 @@ export default function DonatePage() {
 
       <Surface className="p-6 mb-5">
         <h2 className="text-base font-bold mb-1 text-text">Donate</h2>
-        <p className="text-xs mb-5 text-text2">Every contribution keeps Spendr free for everyone.</p>
+        <p className="text-xs mb-5 text-text2">Every contribution keeps Ledger free for everyone.</p>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl p-6 text-center" style={{ background: theme.surface2, border: `1px solid ${theme.border}` }}>
             <div className="mb-3 flex justify-center text-accent"><CoffeeIcon /></div>
@@ -71,7 +71,7 @@ export default function DonatePage() {
 
       <Surface className="p-6 text-center">
         <h2 className="text-base font-bold mb-1 text-text">Thank you</h2>
-        <p className="text-xs text-text2">Every bit of support keeps Spendr free for everyone.</p>
+        <p className="text-xs text-text2">Every bit of support keeps Ledger free for everyone.</p>
       </Surface>
     </div>
   )
