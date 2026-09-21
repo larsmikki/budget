@@ -7,7 +7,7 @@ export default function Footer() {
     <footer style={{ borderTop: `1px solid ${theme.border}`, background: theme.surface }}>
       <div className="mx-auto px-4 sm:px-8 h-12 flex items-center justify-between" style={{ maxWidth: 1152 }}>
         <span className="text-xs" style={{ color: theme.text2 }}>
-          © {new Date().getFullYear()} Ledger
+          © {new Date().getFullYear()} Budget
         </span>
         <div className="flex items-center gap-4">
           <Link
@@ -21,7 +21,7 @@ export default function Footer() {
             Donate
           </Link>
           <a
-            href="https://github.com/larsmikki"
+            href="https://github.com/larsmikki/budget"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs transition-opacity hover:opacity-80"

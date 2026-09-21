@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 import { Pill } from '@/components/ui'
 
 const LogoMark = () => (
-  <img src="/favicon.svg" width={28} height={28} alt="Ledger" className="shrink-0" />
+  <img src="/favicon.svg" width={28} height={28} alt="Budget" className="shrink-0" />
 )
 
 const SettingsIcon = () => (
@@ -31,7 +31,7 @@ export default function Layout() {
         <div className="mx-auto px-4 sm:px-8 h-16 flex items-center justify-between" style={{ maxWidth: 1152 }}>
           <Link to="/" className="flex items-center gap-2.5" style={{ textDecoration: 'none' }}>
             <LogoMark />
-            <span className="text-xl font-extrabold tracking-tight gradient-text select-none">Ledger</span>
+            <span className="text-xl font-extrabold tracking-tight gradient-text select-none">Budget</span>
           </Link>
           <nav className="flex items-center gap-2">
             {showFictiveBadge && (

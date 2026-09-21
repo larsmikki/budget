@@ -1,17 +1,19 @@
 services:
-  ledger:
-    image: larsmikki/ledger:latest
-    container_name: ledger
+  budget:
+    image: larsmikki/budget:latest
+    container_name: budget
+    environment:
+      PORT: "3130"
     ports:
-      - "3000:3000"
+      - "3130:3130"
     volumes:
-      - ledger-data:/app/data
+      - budget-data:/app/data
     restart: always
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3130/api/health"]
       interval: 5m
       timeout: 10s
       retries: 3
 
 volumes:
-  ledger-data:
+  budget-data:

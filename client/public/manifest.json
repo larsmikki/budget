@@ -1,6 +1,6 @@
 {
-  "name": "Ledger",
-  "short_name": "Ledger",
+  "name": "Budget",
+  "short_name": "Budget",
   "description": "Annual budget planner - self-hosted, private, free",
   "start_url": "/",
   "display": "standalone",

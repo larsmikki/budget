@@ -1,12 +1,12 @@
-# Ledger
+# Budget
 
 A self-hosted annual budget planner. Track income and expenses across custom sections with monthly breakdowns, running balances, and cumulative totals.
 
-![Ledger screenshot](screenshot.png)
+![Budget screenshot](screenshot.png)
 
 ## Getting started
 
-Pick whichever install path matches your setup. All paths land on [http://localhost:3000](http://localhost:3000). Data is persisted to `budget.json` (in the Docker volume or `./data/` for local installs).
+Pick whichever install path matches your setup. Production deployments land on [http://localhost:3130](http://localhost:3130); the development server remains at [http://localhost:3000](http://localhost:3000). Data is persisted to `budget.json` (in the Docker volume or `./data/` for local installs).
 
 ### 1. Docker (Docker Desktop, NAS, or any Docker server)
 
@@ -14,41 +14,44 @@ Works on Synology, Unraid, TrueNAS, QNAP, Proxmox, or a plain Docker host.
 
 ```bash
 docker run -d \
-  --name ledger \
-  -p 3000:3000 \
-  -v ledger-data:/app/data \
+  --name budget \
+  -e PORT=3130 \
+  -p 3130:3130 \
+  -v budget-data:/app/data \
   --restart unless-stopped \
-  larsmikki/ledger:latest
+  larsmikki/budget:latest
 ```
 
 Or with Compose:
 
 ```yaml
 services:
-  ledger:
-    image: larsmikki/ledger:latest
-    container_name: ledger
+  budget:
+    image: larsmikki/budget:latest
+    container_name: budget
+    environment:
+      PORT: "3130"
     ports:
-      - "3000:3000"
+      - "3130:3130"
     volumes:
-      - ledger-data:/app/data
+      - budget-data:/app/data
     restart: unless-stopped
 
 volumes:
-  ledger-data:
+  budget-data:
 ```
 
-To build the image locally instead: `docker build -t ledger . && docker run -p 3000:3000 -v ledger-data:/app/data ledger`.
+To build the image locally instead: `docker build -t budget . && docker run -e PORT=3130 -p 3130:3130 -v budget-data:/app/data budget`.
 
-> **Upgrading from Budget Planner?** The app is now published as `larsmikki/ledger`. The image, container, and volume names have changed. If you used the Docker named volume, your data lives in `budget-planner-data` (`budget-data` or `spendr-data` on older installations) - either keep that volume name in your compose file, or copy its contents into `ledger-data` before switching. The persisted `budget.json` format is unchanged.
+> **Upgrading from Ledger?** The app is now published as `larsmikki/budget`. The image, container, and volume names have changed. If you used the Docker named volume, your data lives in `ledger-data` (`budget-planner-data`, `spendr-data`, or the original `budget-data` on older installations) - either keep that volume name in your compose file, or copy its contents into `budget-data` before switching (note: if a stale `budget-data` volume from a pre-Spendr install still exists on your host, back it up or rename it first to avoid mixing generations). The persisted `budget.json` format is unchanged.
 
 ### 2. Local install on Windows
 
 Requires [Git for Windows](https://git-scm.com/download/win) and [Node.js 20+](https://nodejs.org/).
 
 ```powershell
-git clone https://github.com/larsmikki/ledger.git
-cd ledger
+git clone https://github.com/larsmikki/budget.git
+cd budget
 npm install
 npm run dev
 ```
@@ -59,8 +62,8 @@ For a production build: `npm run build && npm start`.
 
 ```bash
 brew install node git
-git clone https://github.com/larsmikki/ledger.git
-cd ledger
+git clone https://github.com/larsmikki/budget.git
+cd budget
 npm install
 npm run dev
 ```
@@ -75,8 +78,8 @@ Debian/Ubuntu:
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs git
 
-git clone https://github.com/larsmikki/ledger.git
-cd ledger
+git clone https://github.com/larsmikki/budget.git
+cd budget
 npm install
 npm run dev
 ```
@@ -105,5 +108,5 @@ Monorepo with npm workspaces:
 - **`client/`** - React 19 + Vite 8 + Tailwind CSS 4 + TypeScript SPA
 - **`server/`** - Express + TypeScript REST API (`GET`/`PUT /api/state`), persisting to a flat `data/budget.json` - no database
 - **Dev** - Vite dev server on port 3000 with `/api` proxied to the server on 3001 (`npm run dev` starts both)
-- **Production** - single Express server on port 3000 serving the built client and the API (`npm run build && npm start`, or the Docker image)
+- **Production** - single Express server on port 3130 serving the built client and the API (the Docker image sets `PORT=3130`)
 - **Tests** - Vitest for client and server (`npm test`)

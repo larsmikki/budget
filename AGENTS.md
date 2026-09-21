@@ -7,13 +7,13 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 ```bash
 npm run dev        # Start both client (port 3000) and server (port 3001)
 npm run build      # Production build
-npm start          # Start production server (port 3000)
+npm start          # Start server (port 3001 unless PORT is set; deployed on 3130)
 ```
 
 **Docker:**
 ```bash
-docker compose up      # Start with persistent volume (port 3000)
-docker build -t ledger .  # Build image
+docker compose up      # Start with persistent volume (port 3130)
+docker build -t budget .  # Build image
 ```
 
 ## Architecture

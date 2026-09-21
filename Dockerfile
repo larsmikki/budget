@@ -27,12 +27,12 @@ COPY --from=builder /app/client/dist client/dist
 RUN mkdir -p /app/data
 
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=3130
 ENV DATA_DIR=/app/data
 
-EXPOSE 3000
+EXPOSE 3130
 
 HEALTHCHECK --interval=5m --timeout=5s --start-period=10s --retries=3 \
-  CMD wget --spider -q http://localhost:3000/api/health || exit 1
+  CMD wget --spider -q http://localhost:3130/api/health || exit 1
 
 CMD ["node", "server/dist/index.js"]
